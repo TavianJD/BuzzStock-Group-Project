@@ -3,9 +3,12 @@
 //
 
 //news call https://newsdata.io/api/1/news?apikey=YOUR_API_KEY&country=au,ca&q=criteria
+//API Documentation: https://newsdata.io/docs
 
 const openNews = "pub_22630f1f65786ef7ac53e2d3c31858797ee7";
-const baseNewURL = "https://newsdata.io/api/1/news?";
+const baseNewURL = "https://newsdata.io/api/1/news?apikey=";
+const newsCountries = "&country=us,ca";
+const criteriaPrefix = "&q=";
 
 
 //
@@ -55,11 +58,30 @@ function getNews(myCriteria) {
 
         return returnMe;
 
-    }
+    } else { //The API call and returning of data
+
+        var callMe = baseNewURL + openNews + newsCountries + criteriaPrefix + myCriteria;
+
+        console.log("fetch will call: " + callMe);
+
+         fetch(callMe)
+            .then(function(response) {
+
+                response.json()
+
+            .then(function(data) {
+            
+            console.log(data);
+            
+            });        
+
+        });
+
+    };
 
 };
 
-
+getNews('boston');
 
 //
 // Listeners
