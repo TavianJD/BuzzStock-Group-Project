@@ -6,10 +6,20 @@
 //API Documentation: https://newsdata.io/docs
 
 const openNews = "pub_22630f1f65786ef7ac53e2d3c31858797ee7";
-const baseNewURL = "https://newsdata.io/api/1/news?apikey=";
+const baseNewsURL = "https://newsdata.io/api/1/news?apikey=";
 const newsCountries = "&country=us,ca";
 const criteriaPrefix = "&q=";
 
+// // Alt News Call
+
+//https://newscatcherapi.com/free-news-api
+
+// --url 'https://free-news.p.rapidapi.com/v1/search?q=bitcoin&lang=en&page=1&page_size=25' \
+// --header 'x-rapidapi-host: free-news.p.rapidapi.com' \
+// --header 'x-rapidapi-key: <YOUR API KEY>'
+
+//     const openNews = "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
+//     const baseNewsURL = ""
 
 //
 // Functions
@@ -60,11 +70,18 @@ function getNews(myCriteria) {
 
     } else { //The API call and returning of data
 
-        var callMe = baseNewURL + openNews + newsCountries + criteriaPrefix + myCriteria;
+        // var callMe = baseNewsURL + openNews + newsCountries + criteriaPrefix + myCriteria;
+        var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=5";
 
         console.log("fetch will call: " + callMe);
 
-         fetch(callMe)
+        //curl -XGET 'https://api.newscatcherapi.com/v2/search?q=Tesla' -H 'x-api-key: your_key_1'
+
+         fetch(callMe, {
+            // headers: {"Origin" : "localhost"}
+            method: "GET", 
+            headers: {"x-api-key" : "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
+            }})
             .then(function(response) {
 
                 response.json()
