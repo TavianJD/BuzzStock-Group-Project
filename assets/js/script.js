@@ -2,6 +2,8 @@
 // Global Variables
 //
 
+const newsPageSize = 5;
+
 //
 // Functions
 //
@@ -51,7 +53,7 @@ function getNews(myCriteria) {
 
     } else { //The API call and returning of data
 
-        var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=5";
+        var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=" + newsPageSize;
 
         console.log("fetch will call: " + callMe);
 
@@ -65,6 +67,7 @@ function getNews(myCriteria) {
 
             .then(function(data) {
             
+                
             console.log(data);
 
                 for (let i = 0; i < data.articles.length; i++) {
@@ -90,21 +93,23 @@ function getNews(myCriteria) {
 
         });
 
-        return returnMe;
+        newsIsDone(returnMe);
+            
 
     };
 
 };
 
-var myNews = getNews('Boston');
+//This is called when getNews is complete
+//Build Cards Here
+function newsIsDone(newsData){
 
-window.setTimeout(function(){
+    console.log("newsIsDone is running");
+    console.log(newsData);
 
-    console.log("myNews is:")
-    console.log(myNews);
+};
 
-}, 5000)
-
+getNews('Boston');
 
 //
 // Listeners
