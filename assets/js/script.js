@@ -54,7 +54,7 @@ function getNews(myCriteria) {
         var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=5";
 
         console.log("fetch will call: " + callMe);
-
+        // method gets key                               
         fetch(callMe, {
             method: "GET", 
             headers: {"x-api-key" : "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
