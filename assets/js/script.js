@@ -72,21 +72,19 @@ function getNews(myCriteria) {
         returnMe.push(storyTwo);
         returnMe.push(storyThree);
 
-        //log what the function will be returning
-
-        console.log("getNews is returning ");
-        console.log(returnMe);
-
         //return returnMe
 
-        return returnMe;
+        newsIsDone(returnMe);
 
     } else { //The API call and returning of data
 
+        
+        //Build URL based on criteria and global constant page size
         var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=" + newsPageSize;
 
         console.log("fetch will call: " + callMe);
 
+        //Call API
         fetch(callMe, {
             method: "GET", 
             headers: {"x-api-key" : "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
@@ -95,11 +93,9 @@ function getNews(myCriteria) {
 
                 response.json()
 
-            .then(function(data) {
+            .then(function(data) {            
             
-                
-            console.log(data);
-
+                //Push returned data into simplified return object
                 for (let i = 0; i < data.articles.length; i++) {
                     
                     const element = data.articles[i];
@@ -110,11 +106,7 @@ function getNews(myCriteria) {
                     storyURL:element.link
                     });
                     
-                }
-                
-                console.log("returnMe is:");
-                console.log(returnMe);                          
-                
+                }               
             
             })        
             .catch(error => {
@@ -123,6 +115,7 @@ function getNews(myCriteria) {
 
         });
 
+        //Call downstream function to build out news cards
         newsIsDone(returnMe);
             
 
@@ -139,7 +132,7 @@ function newsIsDone(newsData){
 
 };
 
-getNews('Boston');
+
 
 //
 // Listeners
