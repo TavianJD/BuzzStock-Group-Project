@@ -2,25 +2,6 @@
 // Global Variables
 //
 
-//news call https://newsdata.io/api/1/news?apikey=YOUR_API_KEY&country=au,ca&q=criteria
-//API Documentation: https://newsdata.io/docs
-
-const openNews = "pub_22630f1f65786ef7ac53e2d3c31858797ee7";
-const baseNewsURL = "https://newsdata.io/api/1/news?apikey=";
-const newsCountries = "&country=us,ca";
-const criteriaPrefix = "&q=";
-
-// // Alt News Call
-
-//https://newscatcherapi.com/free-news-api
-
-// --url 'https://free-news.p.rapidapi.com/v1/search?q=bitcoin&lang=en&page=1&page_size=25' \
-// --header 'x-rapidapi-host: free-news.p.rapidapi.com' \
-// --header 'x-rapidapi-key: <YOUR API KEY>'
-
-//     const openNews = "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
-//     const baseNewsURL = ""
-
 //
 // Functions
 //
@@ -70,15 +51,11 @@ function getNews(myCriteria) {
 
     } else { //The API call and returning of data
 
-        // var callMe = baseNewsURL + openNews + newsCountries + criteriaPrefix + myCriteria;
         var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=5";
 
         console.log("fetch will call: " + callMe);
 
-        //curl -XGET 'https://api.newscatcherapi.com/v2/search?q=Tesla' -H 'x-api-key: your_key_1'
-
-         fetch(callMe, {
-            // headers: {"Origin" : "localhost"}
+        fetch(callMe, {
             method: "GET", 
             headers: {"x-api-key" : "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
             }})
@@ -89,16 +66,45 @@ function getNews(myCriteria) {
             .then(function(data) {
             
             console.log(data);
+
+                for (let i = 0; i < data.articles.length; i++) {
+                    
+                    const element = data.articles[i];
+
+                    returnMe.push( {headLine: element.title, 
+                    imageLink: element.media, 
+                    story: element.summary,
+                    storyURL:element.link
+                    });
+                    
+                }
+                
+                console.log("returnMe is:");
+                console.log(returnMe);                          
+                
             
-            });        
+            })        
+            .catch(error => {
+                console.log("Error", error);
+            })
 
         });
+
+        return returnMe;
 
     };
 
 };
 
-getNews('boston');
+var myNews = getNews('Boston');
+
+window.setTimeout(function(){
+
+    console.log("myNews is:")
+    console.log(myNews);
+
+}, 5000)
+
 
 //
 // Listeners
