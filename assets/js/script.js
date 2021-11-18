@@ -8,6 +8,36 @@ const newsPageSize = 5;
 // Functions
 //
 
+function searchIsClicked() {
+
+    console.log("seachIsClicked is running");
+
+    //Add seach value to history
+    //call getTicker
+
+}
+
+//Note the history buttons will call getTicker directly
+function getTicker(myCriteria) {
+
+    console.log("getTicker is running");
+
+    //fetch from api
+    //call getNews with Ticker as criteria
+    //call tickerIsDone
+
+}
+
+function tickerIsDone(tickerData){
+
+    console.log("tickerIsDone is running")
+    
+    //build dynamic html for ticker prices
+        //Header Elements
+        //Card Elements
+
+}
+
 function getNews(myCriteria) {
 
     console.log("getNews is running");
