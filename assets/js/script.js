@@ -25,6 +25,21 @@ function getTicker(myCriteria) {
     //fetch from api
     //call getNews with Ticker as criteria
     //call tickerIsDone
+    
+    //creating dummy data object
+    let tickerDataObject = {
+        ticker: "MSFT", //actually make this myCriteria
+        currentPrice: "1000",
+        openPrice: "990",
+        previousClose: "950",
+        dailyChange: currentPrice - previousClose,
+        dailyChangePercent: (currentPrice / previousClose) - 1,
+        last5Days: [],
+        last1Month: [],
+        last6Months: [],
+        last1Year: []
+    }
+        
 
 }
 
