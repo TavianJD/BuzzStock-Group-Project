@@ -1,0 +1,22 @@
+.date {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+header {
+  background-color: royalblue;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+/* #tickerInput {
+
+} */
