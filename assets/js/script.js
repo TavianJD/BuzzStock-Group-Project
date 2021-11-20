@@ -61,16 +61,7 @@ function getTicker(myCriteria) {
                 // yearLow: "",
             }
             console.log(tickerDataObject);
-            // for (let i = 0; i < data.articles.length; i++) {
-                
-            //     const element = data.articles[i];
 
-            //     returnMe.push( {headLine: element.title, 
-            //     imageLink: element.media, 
-            //     story: element.summary,
-            //     storyURL:element.link
-            //     });
-                
             }               
         
         )        
@@ -80,26 +71,8 @@ function getTicker(myCriteria) {
 
     });
 
-    //Call downstream function to build out news cards
-    //newsIsDone(returnMe);
-        
-    
-    //creating dummy data object
-    // let tickerDataObjectDummy = {
-    //     ticker: "MSFT", //actually make this myCriteria
-    //     currentPrice: "1000",
-    //     openPrice: "990",
-    //     previousClose: "950",
-    //     dailyChange: currentPrice - previousClose,
-    //     dailyChangePercent: (currentPrice / previousClose) - 1,
-    //     last5Days: [],
-    //     last1Month: [],
-    //     last6Months: [],
-    //     last1Year: [],
-    //     yearHigh: "",
-    //     yearLow: "",
-    // }
-        
+    //Call downstream function to build out market data cards and fill in data
+    tickerIsDone(tickerDataObject);
 
 }
 
