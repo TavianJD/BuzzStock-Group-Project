@@ -10,9 +10,9 @@ const newsPageSize = 5;
 
 function searchIsClicked() {
 
-    console.log("seachIsClicked is running");
+    console.log("searchIsClicked is running");
 
-    //Add seach value to history
+    //Add search value to history
     //call getTicker
 
 }
@@ -25,6 +25,48 @@ function getTicker(myCriteria) {
     //fetch from api
     //call getNews with Ticker as criteria
     //call tickerIsDone
+
+    //Build URL based on criteria and global constant page size"
+    //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + myCriteria + "&interval=5min&apikey=FA3A9S4N1YYF4EFK"; //For yesterday's intraday time series data
+    // var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For daily time series data starting yesterday
+    var callMe = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For quote endpoint data
+
+    console.log("fetch will call: " + callMe);
+
+    //Call API
+    fetch(callMe, {
+        method: "GET",
+        })
+        .then(function(response) {
+
+            response.json()
+
+        .then(function(data) {   
+            console.log(data)         
+        
+            //Push returned data into simplified return object
+            // for (let i = 0; i < data.articles.length; i++) {
+                
+            //     const element = data.articles[i];
+
+            //     returnMe.push( {headLine: element.title, 
+            //     imageLink: element.media, 
+            //     story: element.summary,
+            //     storyURL:element.link
+            //     });
+                
+            }               
+        
+        )        
+        .catch(error => {
+            console.log("Error", error);
+        })
+
+    });
+
+    //Call downstream function to build out news cards
+    //newsIsDone(returnMe);
+        
     
     //creating dummy data object
     let tickerDataObject = {
@@ -37,7 +79,9 @@ function getTicker(myCriteria) {
         last5Days: [],
         last1Month: [],
         last6Months: [],
-        last1Year: []
+        last1Year: [],
+        yearHigh: "",
+        yearLow: "",
     }
         
 
