@@ -3,17 +3,32 @@
 //
 
 const newsPageSize = 5;
+var searchBox = document.querySelector("#tickerInput");
+var searchButton = document.querySelector("#searchButton");
 
 //
 // Functions
 //
 
-function searchIsClicked() {
-
+function searchIsClicked(event) {
+    event.preventDefault();
     console.log("searchIsClicked is running");
 
     //Add search value to history
-    //call getTicker
+
+    // Get value from input box
+    // if input box is empty, show a modal "please type a ticker in the search box"
+    console.log(searchBox.value);
+    var textSearched = searchBox.value;
+    if (textSearched === "") {
+        alert("please type a ticker in the search box"); // change this to a modal
+        return;
+    }
+
+    //call getTicker with value from searchBox
+    getTicker(textSearched);
+    searchBox.value = "tlsa"; // change this to an empty string, tsla is for testing twice in a row
+
 
 }
 
@@ -26,9 +41,9 @@ function getTicker(myCriteria) {
     //call getNews with Ticker as criteria
     //call tickerIsDone
 
-    //Build URL based on criteria and global constant page size"
+    //Build URL based on criteria"
     //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + myCriteria + "&interval=5min&apikey=FA3A9S4N1YYF4EFK"; //For yesterday's intraday time series data
-    // var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For daily time series data starting yesterday
+    //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For daily time series data starting yesterday
     var callMe = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For quote endpoint data
 
     console.log("fetch will call: " + callMe);
@@ -62,7 +77,10 @@ function getTicker(myCriteria) {
             }
             console.log(tickerDataObject);
 
-            }               
+            //Call downstream function to build out market data cards and fill in data
+            tickerIsDone(tickerDataObject);
+            }       
+                    
         
         )        
         .catch(error => {
@@ -71,8 +89,7 @@ function getTicker(myCriteria) {
 
     });
 
-    //Call downstream function to build out market data cards and fill in data
-    tickerIsDone(tickerDataObject);
+    
 
 }
 
@@ -92,7 +109,7 @@ function getNews(myCriteria) {
 
     var returnMe = [];
 
-    // If you pass the function testData it will return a static news object for testing
+    // If you pass testData to the function, it will return a static news object for testing
     // example call to get test data: getNews('testData')
     if (myCriteria === "testData") {
 
@@ -185,3 +202,6 @@ function newsIsDone(newsData){
 //
 // Listeners
 //
+
+
+searchButton.addEventListener("click", searchIsClicked);
