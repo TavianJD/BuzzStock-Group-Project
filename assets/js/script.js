@@ -109,7 +109,7 @@ function getNews(myCriteria) {
 
     var returnMe = [];
 
-    // If you pass the function testData it will return a static news object for testing
+    // If you pass testData to the function, it will return a static news object for testing
     // example call to get test data: getNews('testData')
     if (myCriteria === "testData") {
 
