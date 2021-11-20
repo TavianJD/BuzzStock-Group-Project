@@ -42,9 +42,25 @@ function getTicker(myCriteria) {
             response.json()
 
         .then(function(data) {   
-            console.log(data)         
+            console.log(data);
+            
+            let quote = data["Global Quote"];
         
             //Push returned data into simplified return object
+            let tickerDataObject = {
+                ticker: quote["01. symbol"],
+                recentPrice: quote["05. price"],
+                previousClose: quote["08. previous close"],
+                dailyChange: quote["09. change"],
+                dailyChangePercent: quote["10. change percent"],
+                // last5Days: [],
+                // last1Month: [],
+                // last6Months: [],
+                // last1Year: [],
+                // yearHigh: "",
+                // yearLow: "",
+            }
+            console.log(tickerDataObject);
             // for (let i = 0; i < data.articles.length; i++) {
                 
             //     const element = data.articles[i];
@@ -69,20 +85,20 @@ function getTicker(myCriteria) {
         
     
     //creating dummy data object
-    let tickerDataObject = {
-        ticker: "MSFT", //actually make this myCriteria
-        currentPrice: "1000",
-        openPrice: "990",
-        previousClose: "950",
-        dailyChange: currentPrice - previousClose,
-        dailyChangePercent: (currentPrice / previousClose) - 1,
-        last5Days: [],
-        last1Month: [],
-        last6Months: [],
-        last1Year: [],
-        yearHigh: "",
-        yearLow: "",
-    }
+    // let tickerDataObjectDummy = {
+    //     ticker: "MSFT", //actually make this myCriteria
+    //     currentPrice: "1000",
+    //     openPrice: "990",
+    //     previousClose: "950",
+    //     dailyChange: currentPrice - previousClose,
+    //     dailyChangePercent: (currentPrice / previousClose) - 1,
+    //     last5Days: [],
+    //     last1Month: [],
+    //     last6Months: [],
+    //     last1Year: [],
+    //     yearHigh: "",
+    //     yearLow: "",
+    // }
         
 
 }
