@@ -117,7 +117,15 @@ function tickerIsDone(tickerData){
           <a href="#">This is a link</a>
         </div>
       </div>
-    </div>`
+    </div>
+    
+    `
+    
+    // Get the properties from the tickerData object so the values can be added to page
+
+    }
+        
+    }
     var cardHolder = document.querySelector("#cardHolder");
     cardHolder.appendChild(stockCard);
 
