@@ -78,8 +78,9 @@ function getTicker(myCriteria) {
             }
             console.log(tickerDataObject);
 
-            //Call downstream function to build out market data cards and fill in data
+            //Call downstream function to build out market data cards and fill in data, and downstream function for news search, getNews()
             tickerIsDone(tickerDataObject);
+            getNews(myCriteria);
             }       
                     
         
