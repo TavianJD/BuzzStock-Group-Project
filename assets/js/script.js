@@ -109,12 +109,12 @@ function tickerIsDone(tickerData){
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">${tickerData.ticker}</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+          <p>Price: ${tickerData.recentPrice}</p>
+          <p>Prior Closing Price: ${tickerData.previousClose}</p>
+          <p>Daily Change: ${tickerData.dailyChange}</p>
+          <p>Daily Change %: ${tickerData.dailyChangePercent}</p>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
         </div>
       </div>
     </div>
@@ -122,11 +122,11 @@ function tickerIsDone(tickerData){
     `
     
     // Get the properties from the tickerData object so the values can be added to page
-
-    }
+     
+    
         
-    }
     var cardHolder = document.querySelector("#cardHolder");
+
     cardHolder.appendChild(stockCard);
 
         //Card Elements
