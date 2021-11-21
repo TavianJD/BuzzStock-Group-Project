@@ -9,21 +9,36 @@
   <title>BuzzStock</title>
 </head>
 <body>
-  <header>
-  <h1>Buzzstock</h1>  
+  <header class="header">
+    <div class="row">
+      <div class="col s10"> <h1 class="name">Buzzstock</h1></div>
+      <div class="col s2"> <h2 class="date"></h2></div>
+    </div>
+    <div id="data" class="row">
+      <div class="col s7" id="tickerName">Ticker Name Goes Here</div>
+      <div class="col s5"><div id="price">Price Goes Here</div><div id="volume">Volume Goes Here<div></div></div>
+    </div>
   </header>
 
-  <div class="searchDiv container" class="row">
-    <p>Enter a ticker in the search box and submit. We'll provide you market data and news</p>
-    <form>
-      <input type="text" placeholder="Ticker" name="ticker" id="tickerInput" class="form-input col s12 m6"/>
-      <button type="submit" id="searchButton" class="btn waves-effect waves-light col s12 m6">Search</button>
-  </div>
+ 
+  <form id="search-form">
+    <div class="form-group row searchDiv container">
+      <p>Enter a ticker in the search box and submit. We'll provide you market data and news</p>
+      <input type="text" id="tickerInput" class="form-input" placeholder="Ticker Entry Box"/>
+    </div>
+    <div class="form-group">
+      <button id="searchButton" class="col s6 btn waves-effect waves-light" type="submit">Search</button>
+    </div>
+  </form>
+
+
 
   <div id="cardHolder">
     Cards Go Here
   </div>
   
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
 </html>

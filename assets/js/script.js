@@ -1,3 +1,4 @@
+$(".date").append(moment().format('MMM Do YY'));
 //
 // Global Variables
 //
