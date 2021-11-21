@@ -95,10 +95,32 @@ function getTicker(myCriteria) {
 
 function tickerIsDone(tickerData){
 
-    console.log("tickerIsDone is running")
+    console.log("tickerIsDone is running");
+    console.log(tickerData);
     
     //build dynamic html for ticker prices
         //Header Elements
+
+        //create card element, add inner html for more elements, append the element
+    var stockCard = document.createElement("div")
+    stockCard.classList = "row stock-card-container";
+    stockCard.innerHTML = `
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">${tickerData.ticker}</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>`
+    var cardHolder = document.querySelector("#cardHolder");
+    cardHolder.appendChild(stockCard);
+
         //Card Elements
 
 }
