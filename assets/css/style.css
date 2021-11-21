@@ -17,6 +17,33 @@ header {
   font-weight: bold;
 }
 
+form {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+form input {
+  outline:black;
+  border: black;
+  padding: 12px;
+  width: 100%;
+  font-size: 2.2rem;
+  border: 2px solid var(--grey);
+  border-radius: 12px;
+}
+
+#searchButton {
+  display:inline;
+  padding: 5px 2px;
+  font-size: 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 170px;
+  right: 0px;
+  width: 30%;
+  justify-content: right;
+}
 /* #tickerInput {
 
 } */
