@@ -76,7 +76,7 @@ function getTicker(myCriteria) {
                 // yearHigh: "",
                 // yearLow: "",
             }
-            console.log(tickerDataObject);
+            console.log("TICKER DATA OBJECT",tickerDataObject);
 
             //Call downstream function to build out market data cards and fill in data, and downstream function for news search, getNews()
             tickerIsDone(tickerDataObject);
