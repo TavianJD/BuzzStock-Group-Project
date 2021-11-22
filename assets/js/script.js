@@ -81,6 +81,7 @@ function getTicker(myCriteria) {
             //Call downstream function to build out market data cards and fill in data, and downstream function for news search, getNews()
             tickerIsDone(tickerDataObject);
             getNews(myCriteria);
+            saveLocalStorage(tickerDataObject)
             }       
                     
         
@@ -94,6 +95,60 @@ function getTicker(myCriteria) {
     
 
 }
+
+let tickerHistory = [];
+
+function saveLocalStorage(tickerData){
+    console.log("TICKER DATA IN SAVE LOCAL STORAGE", tickerData)
+    if(tickerData.ticker === "undefined" || tickerData.ticker === null || !tickerData.ticker){
+        return;
+    } else {
+        tickerHistory.push(tickerData)
+        console.log("tickerHistory", tickerHistory)
+    }
+    
+    localStorage.setItem("savedTickerData", JSON.stringify(tickerHistory))
+}
+
+// We can change the onclick event to a drop down or however else we want to render
+const tickerHistoryBtn = document.getElementById("tickerHistoryBtn")
+tickerHistoryBtn.addEventListener("click", function(){
+
+    let savedTickers = JSON.parse(localStorage.getItem("savedTickerData")) || [];
+    console.log("saved tickers", savedTickers)
+
+    const tickerHistoryDiv = document.getElementById("showTickerHistory")
+    tickerHistoryDiv.innerHTML = "";
+
+
+    for(let i = 0; i < savedTickers.length; i++){
+        var historyCard = document.createElement("div")
+        historyCard.classList = "row stock-card-container";
+   
+        console.log(savedTickers[i].ticker)
+        historyCard.innerHTML = `
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">${savedTickers[i].ticker}</span>
+              <p>Price: ${savedTickers[i].recentPrice}</p>
+              <p>Prior Closing Price: ${savedTickers[i].previousClose}</p>
+              <p>Daily Change: ${savedTickers[i].dailyChange}</p>
+              <p>Daily Change %: ${savedTickers[i].dailyChangePercent}</p>
+            </div>
+            <div class="card-action">
+            </div>
+          </div>
+        </div>
+        
+        `
+    tickerHistoryDiv.append(historyCard)
+    }
+
+})
+  
+
+
 
 function tickerIsDone(tickerData){
 
