@@ -1,4 +1,4 @@
-$(".date").append(moment().format('MMM Do YY'));
+$(".date").append(moment().format('MMM Do YYYY'));
 //
 // Global Variables
 //
@@ -28,7 +28,7 @@ function searchIsClicked(event) {
 
     //call getTicker with value from searchBox
     getTicker(textSearched);
-    searchBox.value = "tlsa"; // change this to an empty string, tsla is for testing twice in a row
+    searchBox.value = "tsla"; // change this to an empty string, tsla is for testing twice in a row
 
 
 }
@@ -122,6 +122,12 @@ function tickerIsDone(tickerData){
     </div>
     
     `
+
+    const tickerName = document.getElementById("tickerName");
+    tickerName.textContent = tickerData.ticker;
+
+    const price = document.getElementById("price");
+    price.textContent = tickerData.recentPrice;
     
     // Get the properties from the tickerData object so the values can be added to page
      
