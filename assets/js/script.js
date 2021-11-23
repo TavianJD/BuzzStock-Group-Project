@@ -15,8 +15,6 @@ function searchIsClicked(event) {
     event.preventDefault();
     console.log("searchIsClicked is running");
 
-    //Add search value to history
-
     // Get value from input box
     // if input box is empty, show a modal "please type a ticker in the search box"
     console.log(searchBox.value);
@@ -42,9 +40,6 @@ function getTicker(myCriteria) {
     //call getNews with Ticker as criteria
     //call tickerIsDone
 
-    //Build URL based on criteria"
-    //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + myCriteria + "&interval=5min&apikey=FA3A9S4N1YYF4EFK"; //For yesterday's intraday time series data
-    //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For daily time series data starting yesterday
     var callMe = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For quote endpoint data
 
     console.log("fetch will call: " + callMe);
@@ -96,6 +91,8 @@ function getTicker(myCriteria) {
 
 }
 
+// Section for saving and loading recent searches to/from localStorage
+
 let tickerHistory = [];
 
 function saveLocalStorage(tickerData){
@@ -122,28 +119,31 @@ tickerHistoryBtn.addEventListener("click", function(){
 
 
     for(let i = 0; i < savedTickers.length; i++){
-        var historyCard = document.createElement("div")
-        historyCard.classList = "row stock-card-container";
+        // done // make buttons instead of cards
+        // done // put event listener on class="recent-ticker-button"
+        // done // pass click event to handler
+        // done // make a button with textContent
+        // done // pass ticker text to getTicker
+        // div disappears
+
+        var historyBtn = document.createElement("div")
+        historyBtn.classList = "row stock-card-container";
    
         console.log(savedTickers[i].ticker)
-        historyCard.innerHTML = `
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">${savedTickers[i].ticker}</span>
-              <p>Price: ${savedTickers[i].recentPrice}</p>
-              <p>Prior Closing Price: ${savedTickers[i].previousClose}</p>
-              <p>Daily Change: ${savedTickers[i].dailyChange}</p>
-              <p>Daily Change %: ${savedTickers[i].dailyChangePercent}</p>
-            </div>
-            <div class="card-action">
-            </div>
-          </div>
-        </div>
-        
-        `
-    tickerHistoryDiv.append(historyCard)
+        historyBtn.innerHTML = `
+        <button class="recent-ticker-button">${savedTickers[i].ticker}</button>`
+    tickerHistoryDiv.append(historyBtn);
     }
+
+    // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == recent-ticker-button)
+    // then pass button.textContent to getTicker
+    tickerHistoryDiv.addEventListener("click", function(event) {
+        console.log(event);
+        if (event.target.className == "recent-ticker-button") {
+            console.log(event.target.textContent);
+            getTicker(event.target.textContent);
+        }
+    })
 
 })
   
