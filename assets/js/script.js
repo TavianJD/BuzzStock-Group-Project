@@ -1,4 +1,4 @@
-$(".date").append(moment().format('MMM Do YY'));
+$(".date").append(moment().format('MMM Do YYYY'));
 //
 // Global Variables
 //
@@ -28,7 +28,7 @@ function searchIsClicked(event) {
 
     //call getTicker with value from searchBox
     getTicker(textSearched);
-    searchBox.value = "tlsa"; // change this to an empty string, tsla is for testing twice in a row
+    searchBox.value = "tsla"; // change this to an empty string, tsla is for testing twice in a row
 
 
 }
@@ -76,11 +76,12 @@ function getTicker(myCriteria) {
                 // yearHigh: "",
                 // yearLow: "",
             }
-            console.log(tickerDataObject);
+            console.log("TICKER DATA OBJECT",tickerDataObject);
 
             //Call downstream function to build out market data cards and fill in data, and downstream function for news search, getNews()
             tickerIsDone(tickerDataObject);
             getNews(myCriteria);
+            saveLocalStorage(tickerDataObject)
             }       
                     
         
@@ -94,6 +95,60 @@ function getTicker(myCriteria) {
     
 
 }
+
+let tickerHistory = [];
+
+function saveLocalStorage(tickerData){
+    console.log("TICKER DATA IN SAVE LOCAL STORAGE", tickerData)
+    if(tickerData.ticker === "undefined" || tickerData.ticker === null || !tickerData.ticker){
+        return;
+    } else {
+        tickerHistory.push(tickerData)
+        console.log("tickerHistory", tickerHistory)
+    }
+    
+    localStorage.setItem("savedTickerData", JSON.stringify(tickerHistory))
+}
+
+// We can change the onclick event to a drop down or however else we want to render
+const tickerHistoryBtn = document.getElementById("tickerHistoryBtn")
+tickerHistoryBtn.addEventListener("click", function(){
+
+    let savedTickers = JSON.parse(localStorage.getItem("savedTickerData")) || [];
+    console.log("saved tickers", savedTickers)
+
+    const tickerHistoryDiv = document.getElementById("showTickerHistory")
+    tickerHistoryDiv.innerHTML = "";
+
+
+    for(let i = 0; i < savedTickers.length; i++){
+        var historyCard = document.createElement("div")
+        historyCard.classList = "row stock-card-container";
+   
+        console.log(savedTickers[i].ticker)
+        historyCard.innerHTML = `
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">${savedTickers[i].ticker}</span>
+              <p>Price: ${savedTickers[i].recentPrice}</p>
+              <p>Prior Closing Price: ${savedTickers[i].previousClose}</p>
+              <p>Daily Change: ${savedTickers[i].dailyChange}</p>
+              <p>Daily Change %: ${savedTickers[i].dailyChangePercent}</p>
+            </div>
+            <div class="card-action">
+            </div>
+          </div>
+        </div>
+        
+        `
+    tickerHistoryDiv.append(historyCard)
+    }
+
+})
+  
+
+
 
 function tickerIsDone(tickerData){
 
@@ -122,6 +177,12 @@ function tickerIsDone(tickerData){
     </div>
     
     `
+
+    const tickerName = document.getElementById("tickerName");
+    tickerName.textContent = tickerData.ticker;
+
+    const price = document.getElementById("price");
+    price.textContent = tickerData.recentPrice;
     
     // Get the properties from the tickerData object so the values can be added to page
      
