@@ -6,6 +6,10 @@
   --contrast:#669bbc;
 }
 
+body {
+  background-color: var(--soft);
+}
+
 .date {
   font-size: 15px;
   font-weight: bold;
@@ -18,11 +22,37 @@
   margin-top: 10px;
 }
 
-header {
-  background-color: royalblue;
+.header {
   padding-bottom: 10px;
-  border-radius: 15px;
+  margin: 8px;
+  border-radius: 10px;
+  border-color: var(--medium);
+  border-style: solid;
   font-weight: bold;
+  background-color: var(--soft);
+}
+
+.header h1 {
+  color: var(--bold);
+}
+
+.header h2 {
+  color: var(--bold);
+  text-align: right;
+}
+
+.header img {
+  padding: 0rem;
+}
+
+#tickerName {
+  font-size: 18vw;
+  margin: 0px;
+  padding: 0px;  
+}
+
+.headerRow {
+  align-content: flex-start
 }
 
 form {
