@@ -174,7 +174,7 @@ function tickerIsDone(tickerData){
     stockCard.classList = "row stock-card-container";
     stockCard.innerHTML = `
     <div class="col s12 m6">
-      <div class="card darken-1 z-depth-1">
+      <div class="card darken-1 z-depth-2">
         <div class="card1-content">
           <span class="card1-title">${tickerData.ticker}</span>
           <p>Price: ${tickerData.recentPrice}</p>
