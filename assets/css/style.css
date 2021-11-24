@@ -1,3 +1,11 @@
+:root {
+  --soft: #fff2cc;
+  --medium: #ffd966;
+  --bold: #f3a712;
+  --dark: #1B0E14;
+  --contrast:#669bbc;
+}
+
 .date {
   font-size: 15px;
   font-weight: bold;
