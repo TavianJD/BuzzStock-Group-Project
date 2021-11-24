@@ -1,4 +1,4 @@
-$(".date").append(moment().format('MMM Do YYYY'));
+$(".date").append(moment().format('MM/DD/YYYY'));
 //
 // Global Variables
 //
