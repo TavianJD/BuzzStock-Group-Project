@@ -21,6 +21,14 @@ function searchIsClicked(event) {
     event.preventDefault();
     console.log("searchIsClicked is running");
 
+    // remove prior searched tickers' news-card-container cards and stock-card-container cards so the newly searched ticker will show data on the page
+    let stockCardsContainer = $("#stock-card-container");
+    stockCardsContainer.remove();
+    console.log(stockCardsContainer);
+    let newsCardsContainers = $(".news-card-container");
+    newsCardsContainers.remove();
+    console.log(newsCardsContainers);
+
     // Get value from input box
     // if input box is empty, show a modal "please type a ticker in the search box"
     console.log(searchBox.value);
@@ -191,6 +199,7 @@ function tickerIsDone(tickerData){
 
     console.log("tickerIsDone is running");
     console.log(tickerData);
+
     
     //build dynamic html for ticker prices
         //Header Elements
@@ -198,17 +207,16 @@ function tickerIsDone(tickerData){
         //create card element, add inner html for more elements, append the element
     var stockCard = document.createElement("div")
     stockCard.classList = "row stock-card-container";
+    stockCard.id = "stock-card-container";
     stockCard.innerHTML = `
     <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">${tickerData.ticker}</span>
+      <div class="card darken-1 z-depth-2">
+        <div class="card1-content">
+          <span class="card1-title">${tickerData.ticker}</span>
           <p>Price: ${tickerData.recentPrice}</p>
           <p>Prior Closing Price: ${tickerData.previousClose}</p>
           <p>Daily Change: ${tickerData.dailyChange}</p>
           <p>Daily Change %: ${tickerData.dailyChangePercent}</p>
-        </div>
-        <div class="card-action">
         </div>
       </div>
     </div>
@@ -331,6 +339,7 @@ function newsIsDone(newsData){
         console.log(newsData[i]);
         var newsCard = document.createElement("div")
         newsCard.classList = "row news-card-container";
+        newsCard.id = "news-card-container";
         newsCard.innerHTML = `
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
