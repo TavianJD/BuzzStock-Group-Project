@@ -163,15 +163,13 @@ function tickerIsDone(tickerData){
     stockCard.classList = "row stock-card-container";
     stockCard.innerHTML = `
     <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
+      <div class="card darken-1">
+        <div class="card-content">
           <span class="card-title">${tickerData.ticker}</span>
           <p>Price: ${tickerData.recentPrice}</p>
           <p>Prior Closing Price: ${tickerData.previousClose}</p>
           <p>Daily Change: ${tickerData.dailyChange}</p>
           <p>Daily Change %: ${tickerData.dailyChangePercent}</p>
-        </div>
-        <div class="card-action">
         </div>
       </div>
     </div>
