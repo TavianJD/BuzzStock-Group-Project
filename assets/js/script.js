@@ -118,15 +118,29 @@ function saveLocalStorage(tickerData){
     localStorage.setItem("savedTickerData", JSON.stringify(tickerHistory))
 }
 
-// We can change the onclick event to a drop down or however else we want to render
+// The onclick event shows a div with buttons to summon the recent ticker back to the page
 const tickerHistoryBtn = document.getElementById("tickerHistoryBtn")
+const tickerHistoryDiv = document.getElementById("showTickerHistory")
+    tickerHistoryDiv.innerHTML = "";
+
 tickerHistoryBtn.addEventListener("click", function(){
+    if (tickerHistoryBtn.classList == "btn") {
+        tickerHistoryBtn.classList = "btn shown";
+        tickerHistoryDiv.classList = "shown";
+        tickerHistoryBtn.textContent = "Hide";
+
+    } else if (tickerHistoryBtn.classList == "btn shown") {
+        tickerHistoryBtn.classList = "btn"
+        tickerHistoryDiv.classList = "hidden"
+        tickerHistoryBtn.textContent = "Show Recent Tickers";
+        return;
+
+    }
 
     let savedTickers = JSON.parse(localStorage.getItem("savedTickerData")) || [];
     console.log("saved tickers", savedTickers)
 
-    const tickerHistoryDiv = document.getElementById("showTickerHistory")
-    tickerHistoryDiv.innerHTML = "";
+    
 
 
     for(let i = 0; i < savedTickers.length; i++){
@@ -135,15 +149,20 @@ tickerHistoryBtn.addEventListener("click", function(){
         // done // pass click event to handler
         // done // make a button with textContent
         // done // pass ticker text to getTicker
-        // div disappears
+        // make div disappear
+        // make if statement in getTicker that skips fetch for already fetched recent ticker data
 
-        var historyBtn = document.createElement("div")
-        historyBtn.classList = "row stock-card-container";
-   
-        console.log(savedTickers[i].ticker)
-        historyBtn.innerHTML = `
-        <button class="recent-ticker-button">${savedTickers[i].ticker}</button>`
-    tickerHistoryDiv.append(historyBtn);
+
+        // If the history div already has the ticker ID, make it skip the append
+        if (tickerHistoryDiv.innerHTML.includes(`${savedTickers[i].ticker}`)) {
+            
+        } else {
+            var historyBtn = document.createElement("button");
+
+            historyBtn.innerHTML = `
+            <button class="recent-ticker-button" id="${savedTickers[i].ticker}">${savedTickers[i].ticker}</button>`
+            tickerHistoryDiv.append(historyBtn);
+        }
     }
 
     // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
