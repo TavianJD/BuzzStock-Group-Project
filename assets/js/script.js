@@ -7,9 +7,15 @@ const newsPageSize = 5;
 var searchBox = document.querySelector("#tickerInput");
 var searchButton = document.querySelector("#searchButton");
 
+$(document).ready(function(){
+    $('.modal').modal()
+});
+
 //
 // Functions
 //
+
+
 
 function searchIsClicked(event) {
     event.preventDefault();
@@ -19,10 +25,15 @@ function searchIsClicked(event) {
     // if input box is empty, show a modal "please type a ticker in the search box"
     console.log(searchBox.value);
     var textSearched = searchBox.value;
+
+    // if text is blank, show modal alert
     if (textSearched === "") {
-        alert("please type a ticker in the search box"); // change this to a modal
+            $('#modal1').modal('open');
+        
+        console.log($(".modal"));
+
         return;
-    }
+    };
 
     //call getTicker with value from searchBox
     getTicker(textSearched);
@@ -135,7 +146,7 @@ tickerHistoryBtn.addEventListener("click", function(){
     tickerHistoryDiv.append(historyBtn);
     }
 
-    // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == recent-ticker-button)
+    // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
     // then pass button.textContent to getTicker
     tickerHistoryDiv.addEventListener("click", function(event) {
         console.log(event);
@@ -296,5 +307,7 @@ function newsIsDone(newsData){
 // Listeners
 //
 
+document.addEventListener("DOMContentLoaded", function() {
 
+});
 searchButton.addEventListener("click", searchIsClicked);
