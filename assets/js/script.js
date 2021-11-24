@@ -87,7 +87,8 @@ function getTicker(myCriteria) {
             //Call downstream function to build out market data cards and fill in data, and downstream function for news search, getNews()
             tickerIsDone(tickerDataObject);
             getNews(myCriteria);
-            saveLocalStorage(tickerDataObject)
+            saveLocalStorage(tickerDataObject);
+            loadSavedTickers();
             }       
                     
         
@@ -136,7 +137,10 @@ tickerHistoryBtn.addEventListener("click", function(){
         return;
 
     }
+    loadSavedTickers();
+});
 
+let loadSavedTickers = function() {
     let savedTickers = JSON.parse(localStorage.getItem("savedTickerData")) || [];
     console.log("saved tickers", savedTickers)
 
@@ -149,7 +153,7 @@ tickerHistoryBtn.addEventListener("click", function(){
         // done // pass click event to handler
         // done // make a button with textContent
         // done // pass ticker text to getTicker
-        // make div disappear
+        // done // make div disappear
         // make if statement in getTicker that skips fetch for already fetched recent ticker data
 
 
@@ -163,7 +167,8 @@ tickerHistoryBtn.addEventListener("click", function(){
             <button class="recent-ticker-button" id="${savedTickers[i].ticker}">${savedTickers[i].ticker}</button>`
             tickerHistoryDiv.append(historyBtn);
         }
-    }
+    };
+};
 
     // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
     // then pass button.textContent to getTicker
@@ -175,7 +180,7 @@ tickerHistoryBtn.addEventListener("click", function(){
         }
     })
 
-})
+
   
 
 
