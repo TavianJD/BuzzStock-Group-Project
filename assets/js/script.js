@@ -30,7 +30,7 @@ function searchIsClicked(event) {
     getTicker(textSearched);
     searchBox.value = "tsla"; // change this to an empty string, tsla is for testing twice in a row
 
-
+ 
 }
 
 //Note the history buttons will call getTicker directly
