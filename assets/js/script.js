@@ -159,8 +159,10 @@ let loadSavedTickers = function() {
 
         // If the history div already has the ticker ID, make it skip the append
         if (tickerHistoryDiv.innerHTML.includes(`${savedTickers[i].ticker}`)) {
-            
+            // do nothing
         } else {
+            // make a button for the newly searched ticker to be able to be searched again and append it to the showTickerHistory div
+
             var historyBtn = document.createElement("button");
 
             historyBtn.innerHTML = `
