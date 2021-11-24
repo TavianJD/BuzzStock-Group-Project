@@ -204,7 +204,7 @@ function getNews(myCriteria) {
                     });
                     
                 }               
-            
+                newsIsDone(returnMe);
             })        
             .catch(error => {
                 console.log("Error", error);
@@ -213,7 +213,7 @@ function getNews(myCriteria) {
         });
 
         //Call downstream function to build out news cards
-        newsIsDone(returnMe);
+        // newsIsDone(returnMe); newsIsDone(returnMe);
             
 
     };
@@ -226,6 +226,16 @@ function newsIsDone(newsData){
 
     console.log("newsIsDone is running");
     console.log(newsData);
+
+    for (let i = 0; i < 5; i++) {
+            
+        // $("#cardHolder").add("<div> <>News Story</h2> " + element.headLine +"</div>");
+        console.log(newsData[i]);
+
+    }
+        
+        
+   
 
 };
 
