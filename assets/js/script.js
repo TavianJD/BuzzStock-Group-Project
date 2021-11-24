@@ -265,7 +265,7 @@ function getNews(myCriteria) {
                     });
                     
                 }               
-            
+                newsIsDone(returnMe);
             })        
             .catch(error => {
                 console.log("Error", error);
@@ -274,7 +274,7 @@ function getNews(myCriteria) {
         });
 
         //Call downstream function to build out news cards
-        newsIsDone(returnMe);
+        // newsIsDone(returnMe); newsIsDone(returnMe);
             
 
     };
@@ -287,6 +287,33 @@ function newsIsDone(newsData){
 
     console.log("newsIsDone is running");
     console.log(newsData);
+
+    for (let i = 0; i < 5; i++) {
+            
+        // $("#cardHolder").add("<div> <>News Story</h2> " + element.headLine +"</div>");
+        console.log(newsData[i]);
+        var newsCard = document.createElement("div")
+        newsCard.classList = "row news-card-container";
+        newsCard.innerHTML = `
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <a href=${newsData[i].storyURL}
+              <span class="card-title">${newsData[i].headLine}</span>
+              <img src="${newsData[i].imageLink}" alt="Image for: ${newsData[i].headLine}">
+              <p>${newsData[i].story}</p>
+              </a>
+            </div>
+            <div class="card-action">
+            </div>
+          </div>
+        </div>
+        
+        `
+        $("#cardHolder").append(newsCard);
+    }  
+        
+   
 
 };
 
