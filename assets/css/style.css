@@ -18,6 +18,10 @@
   margin-top: 10px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 header {
   background-color: royalblue;
   padding-bottom: 10px;
