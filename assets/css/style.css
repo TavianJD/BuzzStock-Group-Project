@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: var(--soft);
+  background-image: url(../images/logobackground.jpg);
 }
 
 .date {
@@ -28,17 +28,20 @@ body {
 }
 
 .header {
-  padding-bottom: 10px;
+  padding-left: 10px;
   margin: 8px;
   border-radius: 10px;
   border-color: var(--medium);
   border-style: solid;
   font-weight: bold;
-  background-color: var(--soft);
+  background-image: url(../images/softlogo.jpg);
+  background-size: cover;
 }
 
 .header h1 {
   color: var(--bold);
+  margin-bottom: 8px;
+  
 }
 
 .header h2 {
@@ -47,7 +50,7 @@ body {
 }
 
 .header img {
-  padding: 0rem;
+  height: 27px;
 }
 
 #tickerName {
@@ -57,7 +60,8 @@ body {
 }
 
 .headerRow {
-  align-content: flex-start
+  margin: 0px;
+  padding: 0px;
 }
 
 #search-form {

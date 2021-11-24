@@ -227,7 +227,7 @@ function tickerIsDone(tickerData){
     tickerName.textContent = tickerData.ticker;
 
     const price = document.getElementById("price");
-    price.textContent = tickerData.recentPrice;
+    price.textContent = "$" + tickerData.recentPrice;
     
     // Get the properties from the tickerData object so the values can be added to page
      
