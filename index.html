@@ -9,12 +9,14 @@
   <title>BuzzStock</title>
 </head>
 <body>
-  <header class="header">
-    <div class="row">
-      <div class="col s10"> <h1 class="name">Buzzstock</h1></div>
-      <div class="col s2"> <h2 class="date"></h2></div>
+  <header class="header z-depth-4">
+    <div class="row headerRow">
+      <div class="col s8">
+        <h1 class="name">Buzzstock</h1>
+      </div>
+      <div class="col s4"> <h2 class="date"></h2></div>
     </div>
-    <div id="data" class="row">
+    <div id="data" class="row headerRow">
       <div class="col s7" id="tickerName"></div>
       <div class="col s5"><div id="price"></div><div id="volume">Volume Goes Here<div></div></div>
     </div>
@@ -22,16 +24,30 @@
 
  
   <form id="search-form">
-    <div class="form-group row searchDiv container">
+    <div class="form-group row searchDiv">
       <p>Enter a ticker in the search box and submit. We'll provide you market data and news</p>
       <input type="text" id="tickerInput" class="form-input" placeholder="Ticker Entry Box"/>
       <div class="form-group">
-        <button id="searchButton" class="col s6 btn" type="submit">Search</button>
+        <button id="searchButton" class="col s6 btn z-depth-3" type="submit">Search</button>
       </div>
     </div>
   </form>
-  <div class="row">
-    <button id="tickerHistoryBtn" class="col s6 btn">Show Recent Tickers</button>
+
+  
+  <!-- To build modal that warns user of no text in search box -->
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-trigger">
+  <div class="modal-content">
+    <h4>Please enter a ticker</h4>
+    <p>Search box should not be left empty.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+
+  <div class="">
+    <button id="tickerHistoryBtn" class="btn z-depth-3">Show Recent Tickers</button>
   </div>
   <div id="showTickerHistory"></div>
 
@@ -42,6 +58,8 @@
   
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <!-- Compiled and minified JavaScript for materialize-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
 </html>
