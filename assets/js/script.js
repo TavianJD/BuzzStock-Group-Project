@@ -1,4 +1,4 @@
-$(".date").append(moment().format('MMM Do YY'));
+$(".date").append(moment().format('MMM Do YYYY'));
 //
 // Global Variables
 //
@@ -15,8 +15,6 @@ function searchIsClicked(event) {
     event.preventDefault();
     console.log("searchIsClicked is running");
 
-    //Add search value to history
-
     // Get value from input box
     // if input box is empty, show a modal "please type a ticker in the search box"
     console.log(searchBox.value);
@@ -28,7 +26,7 @@ function searchIsClicked(event) {
 
     //call getTicker with value from searchBox
     getTicker(textSearched);
-    searchBox.value = "tlsa"; // change this to an empty string, tsla is for testing twice in a row
+    searchBox.value = "tsla"; // change this to an empty string, tsla is for testing twice in a row
 
 
 }
@@ -42,9 +40,6 @@ function getTicker(myCriteria) {
     //call getNews with Ticker as criteria
     //call tickerIsDone
 
-    //Build URL based on criteria"
-    //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + myCriteria + "&interval=5min&apikey=FA3A9S4N1YYF4EFK"; //For yesterday's intraday time series data
-    //var callMe = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For daily time series data starting yesterday
     var callMe = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + myCriteria + "&apikey=FA3A9S4N1YYF4EFK" //For quote endpoint data
 
     console.log("fetch will call: " + callMe);
@@ -76,11 +71,12 @@ function getTicker(myCriteria) {
                 // yearHigh: "",
                 // yearLow: "",
             }
-            console.log(tickerDataObject);
+            console.log("TICKER DATA OBJECT",tickerDataObject);
 
             //Call downstream function to build out market data cards and fill in data, and downstream function for news search, getNews()
             tickerIsDone(tickerDataObject);
             getNews(myCriteria);
+            saveLocalStorage(tickerDataObject)
             }       
                     
         
@@ -94,6 +90,65 @@ function getTicker(myCriteria) {
     
 
 }
+
+// Section for saving and loading recent searches to/from localStorage
+
+let tickerHistory = [];
+
+function saveLocalStorage(tickerData){
+    console.log("TICKER DATA IN SAVE LOCAL STORAGE", tickerData)
+    if(tickerData.ticker === "undefined" || tickerData.ticker === null || !tickerData.ticker){
+        return;
+    } else {
+        tickerHistory.push(tickerData)
+        console.log("tickerHistory", tickerHistory)
+    }
+    
+    localStorage.setItem("savedTickerData", JSON.stringify(tickerHistory))
+}
+
+// We can change the onclick event to a drop down or however else we want to render
+const tickerHistoryBtn = document.getElementById("tickerHistoryBtn")
+tickerHistoryBtn.addEventListener("click", function(){
+
+    let savedTickers = JSON.parse(localStorage.getItem("savedTickerData")) || [];
+    console.log("saved tickers", savedTickers)
+
+    const tickerHistoryDiv = document.getElementById("showTickerHistory")
+    tickerHistoryDiv.innerHTML = "";
+
+
+    for(let i = 0; i < savedTickers.length; i++){
+        // done // make buttons instead of cards
+        // done // put event listener on class="recent-ticker-button"
+        // done // pass click event to handler
+        // done // make a button with textContent
+        // done // pass ticker text to getTicker
+        // div disappears
+
+        var historyBtn = document.createElement("div")
+        historyBtn.classList = "row stock-card-container";
+   
+        console.log(savedTickers[i].ticker)
+        historyBtn.innerHTML = `
+        <button class="recent-ticker-button">${savedTickers[i].ticker}</button>`
+    tickerHistoryDiv.append(historyBtn);
+    }
+
+    // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == recent-ticker-button)
+    // then pass button.textContent to getTicker
+    tickerHistoryDiv.addEventListener("click", function(event) {
+        console.log(event);
+        if (event.target.className == "recent-ticker-button") {
+            console.log(event.target.textContent);
+            getTicker(event.target.textContent);
+        }
+    })
+
+})
+  
+
+
 
 function tickerIsDone(tickerData){
 
@@ -122,6 +177,12 @@ function tickerIsDone(tickerData){
     </div>
     
     `
+
+    const tickerName = document.getElementById("tickerName");
+    tickerName.textContent = tickerData.ticker;
+
+    const price = document.getElementById("price");
+    price.textContent = tickerData.recentPrice;
     
     // Get the properties from the tickerData object so the values can be added to page
      
