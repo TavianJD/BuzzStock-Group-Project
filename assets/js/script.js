@@ -45,9 +45,9 @@ function searchIsClicked(event) {
 
     //call getTicker with value from searchBox
     getTicker(textSearched);
-    searchBox.value = "tsla"; // change this to an empty string, tsla is for testing twice in a row
+    searchBox.value = ""; // change this to an empty string, tsla is for testing twice in a row
 
-
+ 
 }
 
 //Note the history buttons will call getTicker directly
@@ -286,8 +286,7 @@ function getNews(myCriteria) {
         var callMe = "https://api.newscatcherapi.com/v2/search?q=" + myCriteria + "&page_size=" + newsPageSize;
 
         console.log("fetch will call: " + callMe);
-
-        //Call API
+        // method gets key                               
         fetch(callMe, {
             method: "GET", 
             headers: {"x-api-key" : "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
