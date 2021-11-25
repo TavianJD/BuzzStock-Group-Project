@@ -45,7 +45,7 @@ function searchIsClicked(event) {
 
     //call getTicker with value from searchBox
     getTicker(textSearched);
-    searchBox.value = ""; // change this to an empty string, tsla is for testing twice in a row
+    searchBox.value = "tsla"; // change this to an empty string, tsla is for testing twice in a row
 
  
 }
