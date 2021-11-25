@@ -133,14 +133,14 @@ const tickerHistoryDiv = document.getElementById("showTickerHistory")
     tickerHistoryDiv.innerHTML = "";
 
 tickerHistoryBtn.addEventListener("click", function(){
-    if (tickerHistoryBtn.classList == "btn") {
-        tickerHistoryBtn.classList = "btn shown";
+    if (tickerHistoryBtn.classList == "btn z-depth-3") {
+        tickerHistoryBtn.classList = "btn shown z-depth-3";
         tickerHistoryDiv.classList = "shown";
         tickerHistoryBtn.textContent = "Hide";
 
-    } else if (tickerHistoryBtn.classList == "btn shown") {
-        tickerHistoryBtn.classList = "btn"
-        tickerHistoryDiv.classList = "hidden"
+    } else if (tickerHistoryBtn.classList == "btn shown z-depth-3") {
+        tickerHistoryBtn.classList = "btn z-depth-3";
+        tickerHistoryDiv.classList = "hidden";
         tickerHistoryBtn.textContent = "Show Recent Tickers";
         return;
 
