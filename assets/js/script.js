@@ -343,7 +343,7 @@ function newsIsDone(newsData){
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <a href=${newsData[i].storyUrl}><p class="truncate">${newsData[i].storyURL}</p></a>
+              <a href=${newsData[i].storyURL} target="_blank">
               <span class="card-title">${newsData[i].headLine}</span>
               <img src="${newsData[i].imageLink}" style="max-width:30%;" alt="Image for: ${newsData[i].headLine}">
               <p>${newsData[i].story}</p>
