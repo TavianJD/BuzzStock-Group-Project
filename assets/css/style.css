@@ -108,6 +108,33 @@ body {
   }
 }
 
+.news-card-container {
+  padding: 0;
+  margin: 0 .75rem;
+}
+
 .news-card-container a {
-  color: var(--dark);
+  color: var(--soft);  
+}
+
+.card-content {
+  border-radius: 10px;
+  border-color: var(--medium);
+  border-style: solid;
+}
+
+.card1-title {
+  color: var(--soft);
+}
+
+.noPadding {
+  padding: 0 !important;
+}
+
+.contrastBG {
+  background-color: var(--contrast);
+}
+
+.softText {
+  color: var(--soft);
 }
