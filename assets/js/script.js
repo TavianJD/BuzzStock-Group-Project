@@ -56,6 +56,9 @@ function getTicker(myCriteria) {
 
     console.log("getTicker is running");
 
+    // Reset the card holder
+    $("#cardHolder").html("");
+
     //fetch from api
     //call getNews with Ticker as criteria
     //call tickerIsDone
@@ -170,28 +173,14 @@ let loadSavedTickers = function() {
         } else {
             // make a button for the newly searched ticker to be able to be searched again and append it to the showTickerHistory div
 
-            var historyBtn = document.createElement("div");
-            historyBtn.classList = "recent-ticker-button row"
+            var historyBtn = document.createElement("button");
+            historyBtn.classList = "recent-ticker-button btn row"
             historyBtn.id = savedTickers[i].ticker
             historyBtn.innerHTML = savedTickers[i].ticker
             tickerHistoryDiv.append(historyBtn);
         }
     };
 };
-
-    // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
-    // then pass button.textContent to getTicker
-    tickerHistoryDiv.addEventListener("click", function(event) {
-        console.log(event);
-        if (event.target.className == "recent-ticker-button") {
-            console.log(event.target.textContent);
-            getTicker(event.target.textContent);
-        }
-    })
-
-
-  
-
 
 
 function tickerIsDone(tickerData){
@@ -353,8 +342,7 @@ function newsIsDone(newsData){
         
         `
         $("#cardHolder").append(newsCard);
-    }  
-        
+    }         
    
 
 };
@@ -368,6 +356,7 @@ function newsIsDone(newsData){
 document.addEventListener("DOMContentLoaded", function() {
 
 });
+
 searchButton.addEventListener("click", searchIsClicked);
 
 $("#helpLine").click(function(){
@@ -385,3 +374,13 @@ $("#helpLine").click(function(){
     }   
 
 });
+
+// Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
+// then pass button.textContent to getTicker
+tickerHistoryDiv.addEventListener("click", function(event) {
+    console.log(event);
+    if (event.target.className == "recent-ticker-button btn row") {
+        console.log(event.target.textContent);
+        getTicker(event.target.textContent);
+    }
+})
