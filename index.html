@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />  
   <title>BuzzStock</title>
 </head>
@@ -25,10 +26,10 @@
  
   <form id="search-form">
     <div class="form-group row searchDiv">
-      <p>Enter a ticker in the search box and submit. We'll provide you market data and news</p>
-      <input type="text" id="tickerInput" class="form-input" placeholder="Ticker Entry Box"/>
+      <p id="helpLine" class="contrastText">Help</p>
       <div class="form-group">
-        <button id="searchButton" class="col s6 btn z-depth-3" type="submit">Search</button>
+        <input type="text" id="tickerInput" class="form-input col s7" placeholder="ENTER A TICKER"/>
+        <button id="searchButton" class="col s5 btn z-depth-3" type="submit">Search <i class="material-icons">send</i></button>
       </div>
     </div>
   </form>
@@ -47,9 +48,9 @@
 </div>
 
 
-  <button id="tickerHistoryBtn" class="btn z-depth-3">Show Recent Tickers</button>
-  <div id="showTickerHistory" class="hidden"></div>
-
+  <div id="tickerHistoryBtn" class="contrastText row">Show Recent Tickers ></div>
+  <div id="showTickerHistory" class="hidden col s12"></div>
+  
 
 
   <div id="cardHolder">

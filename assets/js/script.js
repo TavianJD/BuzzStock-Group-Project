@@ -6,6 +6,7 @@ $(".date").append(moment().format('MM/DD/YYYY'));
 const newsPageSize = 5;
 var searchBox = document.querySelector("#tickerInput");
 var searchButton = document.querySelector("#searchButton");
+var helpStatus = 0;
 
 $(document).ready(function(){
     $('.modal').modal()
@@ -133,15 +134,13 @@ const tickerHistoryDiv = document.getElementById("showTickerHistory")
     tickerHistoryDiv.innerHTML = "";
 
 tickerHistoryBtn.addEventListener("click", function(){
-    if (tickerHistoryBtn.classList == "btn z-depth-3") {
-        tickerHistoryBtn.classList = "btn shown z-depth-3";
-        tickerHistoryDiv.classList = "shown";
-        tickerHistoryBtn.textContent = "Hide";
+    if (tickerHistoryBtn.textContent == "Show Recent Tickers >") {
+        tickerHistoryDiv.classList = "shown col s12";
+        tickerHistoryBtn.textContent = "Hide <";
 
-    } else if (tickerHistoryBtn.classList == "btn shown z-depth-3") {
-        tickerHistoryBtn.classList = "btn z-depth-3";
-        tickerHistoryDiv.classList = "hidden";
-        tickerHistoryBtn.textContent = "Show Recent Tickers";
+    } else {
+        tickerHistoryDiv.classList = "hidden col s12";
+        tickerHistoryBtn.textContent = "Show Recent Tickers >";
         return;
 
     }
@@ -171,10 +170,10 @@ let loadSavedTickers = function() {
         } else {
             // make a button for the newly searched ticker to be able to be searched again and append it to the showTickerHistory div
 
-            var historyBtn = document.createElement("button");
-
-            historyBtn.innerHTML = `
-            <button class="recent-ticker-button" id="${savedTickers[i].ticker}">${savedTickers[i].ticker}</button>`
+            var historyBtn = document.createElement("div");
+            historyBtn.classList = "recent-ticker-button row"
+            historyBtn.id = savedTickers[i].ticker
+            historyBtn.innerHTML = savedTickers[i].ticker
             tickerHistoryDiv.append(historyBtn);
         }
     };
@@ -370,3 +369,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 searchButton.addEventListener("click", searchIsClicked);
+
+$("#helpLine").click(function(){
+
+    if (helpStatus === 0){
+
+        $("#helpLine").text("Enter a ticker in the search box and submit. We'll provide you market data and news. Click on a story to go to the source.");
+        helpStatus = 1;
+
+    } else {
+
+        $("#helpLine").text("Help");
+        helpStatus = 0;
+
+    }   
+
+});
