@@ -6,6 +6,7 @@ $(".date").append(moment().format('MM/DD/YYYY'));
 const newsPageSize = 5;
 var searchBox = document.querySelector("#tickerInput");
 var searchButton = document.querySelector("#searchButton");
+var helpStatus = 0;
 
 $(document).ready(function(){
     $('.modal').modal()
@@ -54,6 +55,9 @@ function searchIsClicked(event) {
 function getTicker(myCriteria) {
 
     console.log("getTicker is running");
+
+    // Reset the card holder
+    $("#cardHolder").html("");
 
     //fetch from api
     //call getNews with Ticker as criteria
@@ -133,15 +137,13 @@ const tickerHistoryDiv = document.getElementById("showTickerHistory")
     tickerHistoryDiv.innerHTML = "";
 
 tickerHistoryBtn.addEventListener("click", function(){
-    if (tickerHistoryBtn.classList == "btn z-depth-3") {
-        tickerHistoryBtn.classList = "btn shown z-depth-3";
-        tickerHistoryDiv.classList = "shown";
-        tickerHistoryBtn.textContent = "Hide";
+    if (tickerHistoryBtn.textContent == "Show Recent Tickers >") {
+        tickerHistoryDiv.classList = "shown col s12";
+        tickerHistoryBtn.textContent = "Hide <";
 
-    } else if (tickerHistoryBtn.classList == "btn shown z-depth-3") {
-        tickerHistoryBtn.classList = "btn z-depth-3";
-        tickerHistoryDiv.classList = "hidden";
-        tickerHistoryBtn.textContent = "Show Recent Tickers";
+    } else {
+        tickerHistoryDiv.classList = "hidden col s12";
+        tickerHistoryBtn.textContent = "Show Recent Tickers >";
         return;
 
     }
@@ -172,27 +174,13 @@ let loadSavedTickers = function() {
             // make a button for the newly searched ticker to be able to be searched again and append it to the showTickerHistory div
 
             var historyBtn = document.createElement("button");
-
-            historyBtn.innerHTML = `
-            <button class="recent-ticker-button" id="${savedTickers[i].ticker}">${savedTickers[i].ticker}</button>`
+            historyBtn.classList = "recent-ticker-button btn row"
+            historyBtn.id = savedTickers[i].ticker
+            historyBtn.innerHTML = savedTickers[i].ticker
             tickerHistoryDiv.append(historyBtn);
         }
     };
 };
-
-    // Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
-    // then pass button.textContent to getTicker
-    tickerHistoryDiv.addEventListener("click", function(event) {
-        console.log(event);
-        if (event.target.className == "recent-ticker-button") {
-            console.log(event.target.textContent);
-            getTicker(event.target.textContent);
-        }
-    })
-
-
-  
-
 
 
 function tickerIsDone(tickerData){
@@ -337,27 +325,24 @@ function newsIsDone(newsData){
         // $("#cardHolder").add("<div> <>News Story</h2> " + element.headLine +"</div>");
         console.log(newsData[i]);
         var newsCard = document.createElement("div")
-        newsCard.classList = "row news-card-container";
+        newsCard.classList = "news-card-container row";
         newsCard.id = "news-card-container";
         newsCard.innerHTML = `
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <a href=${newsData[i].storyUrl}><p class="truncate">${newsData[i].storyURL}</p></a>
+        <div class="col s12 m6 noPadding">
+          <div class="noPadding card">
+            <div class="card-content">
+              <a href=${newsData[i].storyURL} target="_blank">
               <span class="card-title">${newsData[i].headLine}</span>
               <img src="${newsData[i].imageLink}" style="max-width:30%;" alt="Image for: ${newsData[i].headLine}">
               <p>${newsData[i].story}</p>
               </a>
-            </div>
-            <div class="card-action">
-            </div>
+            </div>            
           </div>
         </div>
         
         `
         $("#cardHolder").append(newsCard);
-    }  
-        
+    }         
    
 
 };
@@ -371,4 +356,31 @@ function newsIsDone(newsData){
 document.addEventListener("DOMContentLoaded", function() {
 
 });
+
 searchButton.addEventListener("click", searchIsClicked);
+
+$("#helpLine").click(function(){
+
+    if (helpStatus === 0){
+
+        $("#helpLine").text("Enter a ticker in the search box and submit. We'll provide you market data and news. Click on a story to go to the source.");
+        helpStatus = 1;
+
+    } else {
+
+        $("#helpLine").text("Help");
+        helpStatus = 0;
+
+    }   
+
+});
+
+// Add event listener to tickerHistoryDiv, pass to function if(clicked.className == "recent-ticker-button")
+// then pass button.textContent to getTicker
+tickerHistoryDiv.addEventListener("click", function(event) {
+    console.log(event);
+    if (event.target.className == "recent-ticker-button btn row") {
+        console.log(event.target.textContent);
+        getTicker(event.target.textContent);
+    }
+})
