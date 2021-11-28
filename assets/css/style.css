@@ -77,11 +77,9 @@ body {
 }
 
 #tickerHistoryBtn {
-  background-color: var(--medium);
-  color: var(--dark);
-  width: 40%;
-  border-radius: 12px;
+  color: var(--contrast);
   margin-left: 10px;
+  font-size: 14px !important;  
 }
 
 .card {
@@ -106,4 +104,47 @@ body {
     width: fit-content;
     font-weight: bold;
   }
+}
+
+.news-card-container {
+  padding: 0;
+  margin: 0 .75rem;
+}
+
+.news-card-container a {
+  color: var(--soft);  
+}
+
+.card-content {
+  border-radius: 10px;
+  border-color: var(--medium);
+  border-style: solid;
+}
+
+
+.recent-ticker-button {
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: var(--medium);
+  color: var(--dark);
+  width: 40%;
+  margin: 10px !important;
+  padding: 10px;
+  text-align: center;
+}
+
+.noPadding {
+  padding: 0 !important;
+}
+
+.contrastBG {
+  background-color: var(--contrast);
+}
+
+.contrastText{
+  color: var(--contrast);
+}
+
+.softText {
+  color: var(--soft);
 }
