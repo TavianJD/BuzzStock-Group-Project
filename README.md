@@ -31,7 +31,7 @@ The user initiates action by entering a stock ticker in the search box and click
 * CSS
 * JQuery
 * JavaScript
-* Momment.js
+* Moment.js
 * Materialize JS and CSS
 * Google Material Icons
 * Alphavantage Market API
