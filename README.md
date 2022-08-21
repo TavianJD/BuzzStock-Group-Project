@@ -1,4 +1,4 @@
-# Stock-Group-Project
+# BuzzStock Group Project
 
 ## Description
 A mobile website for viewing market data and news stories related to a stock ticker.  The full news stories are available by clicking anywhere on the story card.  Best viewed with a resolution of 500 pixels wide or less.
