@@ -277,7 +277,7 @@ function getNews(myCriteria) {
         // method gets key                               
         fetch(callMe, {
             method: "GET", 
-            headers: {"x-api-key" : "AdKiiLU0drgQWDBh7y1deZRLTm7UMHm_i2vy-lLB-zI"
+            headers: {"x-api-key" : "tYKaHlfhhuI7AM3AM1ytFMTgjVbe7_kObS9ayLmzWLM"
             }})
             .then(function(response) {
 
